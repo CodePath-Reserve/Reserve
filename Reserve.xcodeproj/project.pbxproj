@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3B5999A0A1E2920AFD54699 /* Pods_Reserve.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFFD0CFCEF6F7431CD95C973 /* Pods_Reserve.framework */; };
+		A6F9EE3B2806465E00452C43 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F9EE3A2806465E00452C43 /* LoginViewController.swift */; };
 		FAD45FF62804DBF800CF4148 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD45FF52804DBF800CF4148 /* AppDelegate.swift */; };
 		FAD45FF82804DBF800CF4148 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD45FF72804DBF800CF4148 /* SceneDelegate.swift */; };
 		FAD45FFA2804DBF800CF4148 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD45FF92804DBF800CF4148 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		4C338530B564E141611CD09D /* Pods-Reserve.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reserve.release.xcconfig"; path = "Target Support Files/Pods-Reserve/Pods-Reserve.release.xcconfig"; sourceTree = "<group>"; };
 		999512F43A8D9519214699A5 /* Pods-Reserve.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reserve.debug.xcconfig"; path = "Target Support Files/Pods-Reserve/Pods-Reserve.debug.xcconfig"; sourceTree = "<group>"; };
+		A6F9EE3A2806465E00452C43 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FAD45FF22804DBF800CF4148 /* Reserve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reserve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD45FF52804DBF800CF4148 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD45FF72804DBF800CF4148 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				FAD460032804DBFC00CF4148 /* Info.plist */,
 				FAFDA8A52806355400AF2A5A /* CatalogViewController.swift */,
 				FAFDA8A7280635CA00AF2A5A /* BookPostCell.swift */,
+				A6F9EE3A2806465E00452C43 /* LoginViewController.swift */,
 			);
 			path = Reserve;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F9EE3B2806465E00452C43 /* LoginViewController.swift in Sources */,
 				FAFDA8A8280635CA00AF2A5A /* BookPostCell.swift in Sources */,
 				FAFDA8A62806355400AF2A5A /* CatalogViewController.swift in Sources */,
 				FAD45FFA2804DBF800CF4148 /* ViewController.swift in Sources */,
