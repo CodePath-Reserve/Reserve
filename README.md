@@ -20,22 +20,31 @@ This iOS application is like a book reservation dashboard. Users will be able to
 - **Habit:** This app will be used as often as the user needs to check out a book or return a book. Users who read more are expected to return to the application more often.
 - **Scope:** This application should only have a short reach as it will only be on iOS. If we decide to expand to other platforms then our reach will be larger. With more platforms users will be able to share books with one another.
 
+## Sprint Walkthroughs
+
+### Sprint 01 - Demo
+<img width="250" alt="sketch" src="https://github.com/CodePath-Reserve/Reserve/blob/main/sprint01.gif?raw=true">
+
+
+
 ## Product Spec
 
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
 
-* User can reserve/checkout a book
-* User can return a book
-* User can see a history of all the books they have checked out
-* User can view a catalog of books 
-* User can favorite books and view a list of their favorited books
-* User can write reviews on books
+- [ ] User can reserve/checkout a book
+- [ ] User can return a book
+- [ ] User can see a history of all the books they have checked out
+- [X] User can view a catalog of books
+- [X] Set up parse database
+- [X] User can login and signup
+- [ ] User can favorite books and view a list of their favorited books
+- [ ] User can write reviews on books
 
 **Optional Nice-to-have Stories**
 
-* User can search for books
+- [ ] User can search for books
 
 ### 2. Screen Archetypes
 
