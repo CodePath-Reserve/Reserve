@@ -14,16 +14,21 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // TO DO: return the number of all books
         return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
+        cell.titleLabel.text = "Some title"
+        cell.authorLabel.text = "Some author kjebkjeabg akj jg ajke gkajk ka ejg ae glae jl gjae glae"
+        cell.genreLabel.text = "Some genre"
         return cell
     }
 
