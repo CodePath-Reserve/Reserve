@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import Parse
+import AlamofireImage
+import MessageInputBar
 
 class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var books = [PFObject]()
+//    var selectedBooks: PFObject!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,16 +25,41 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let query = PFQuery(className: "Book")
+        query.includeKey("title")
+        query.includeKey("author")
+//        query.includeKey("cover")
+        query.limit = books.count
+
+        query.findObjectsInBackground { (books, error) in
+            if books != nil {
+                self.books = books!
+                self.tableView.reloadData()
+            }
+        }
+
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // TO DO: return the number of all books
-        return 5
+//        return 5
+        return books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
-        cell.titleLabel.text = "Some title"
-        cell.authorLabel.text = "Some author kjebkjeabg akj jg ajke gkajk ka ejg ae glae jl gjae glae"
-        cell.genreLabel.text = "Some genre"
+        
+        let book = books[indexPath.row]
+        print(book["title"] as Any)
+
+        cell.titleLabel.text = book["title"] as! String
+        cell.authorLabel.text = book["author"] as! String
+//        cell.titleLabel.text = "titles"
+//        cell.authorLabel.text = "authors"
+//        cell.genreLabel.text = "Some genre"
         return cell
     }
 
