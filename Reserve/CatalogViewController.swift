@@ -13,7 +13,6 @@ import MessageInputBar
 class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var books = [PFObject]()
-//    var selectedBooks: PFObject!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,23 +28,19 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidAppear(animated)
 
         let query = PFQuery(className: "Book")
-        query.includeKey("title")
-        query.includeKey("author")
-//        query.includeKey("cover")
-        query.limit = books.count
 
         query.findObjectsInBackground { (books, error) in
             if books != nil {
                 self.books = books!
                 self.tableView.reloadData()
+            } else {
+                print("There are no books")
             }
         }
 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TO DO: return the number of all books
-//        return 5
         return books.count
     }
     
@@ -53,13 +48,15 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
         
         let book = books[indexPath.row]
-        print(book["title"] as Any)
 
         cell.titleLabel.text = book["title"] as! String
         cell.authorLabel.text = book["author"] as! String
-//        cell.titleLabel.text = "titles"
-//        cell.authorLabel.text = "authors"
-//        cell.genreLabel.text = "Some genre"
+        
+        let imageFile = book["cover"] as! PFFileObject
+        let urlString = imageFile.url!
+        let url = URL(string: urlString)!
+        cell.photoView.af.setImage(withURL: url)
+
         return cell
     }
 
