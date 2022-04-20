@@ -1,24 +1,19 @@
 //
-//  BookPostCell.swift
+//  CheckedBookCell.swift
 //  Reserve
 //
-//  Created by Edward Cluster on 4/12/22.
+//  Created by Edward Cluster on 4/19/22.
 //
 
 import UIKit
 
-class BookPostCell: UITableViewCell {
-    @IBOutlet weak var photoView: UIImageView!
+class CheckedBookCell: UITableViewCell {
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-
-    @IBAction func onCheckoutButton(_ sender: Any) {
-    }
-    @IBAction func onFavoriteButton(_ sender: Any) {
-    }
-    @IBAction func onCommentButton(_ sender: Any) {
-    }
+    @IBOutlet weak var photoView: UIImageView!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
