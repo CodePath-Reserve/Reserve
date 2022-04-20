@@ -13,7 +13,6 @@ class BookPostCell: UITableViewCell {
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var favorite: UIButton!
     
     weak var delegate: BookPostCellDelegate?
@@ -21,7 +20,9 @@ class BookPostCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.delegate = nil
-    }
+
+
+    
     
     @IBAction func someButtonTapped(_ sender: UIButton) {
         self.delegate?.buttonTapped(cell: self)
