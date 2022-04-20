@@ -151,7 +151,6 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         } else if indexPath.row <= comments.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
-            cell.delegate = self
             let comment = comments[indexPath.row - 1]
             cell.commentLabel.text = comment["text"] as? String
             
@@ -161,7 +160,6 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddCommentCell")!
-            cell.delegate = self
             return cell
         }
     }
