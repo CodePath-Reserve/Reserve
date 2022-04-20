@@ -347,6 +347,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorLabel" destination="Ibp-Y8-XUK" id="pI8-VF-QrN"/>
+                                            <outlet property="checkout" destination="Bsb-Ex-36Z" id="odu-Pt-eC3"/>
+                                            <outlet property="favorite" destination="3vD-Q7-lu9" id="kB2-Qk-6Tq"/>
                                             <outlet property="photoView" destination="6bs-ND-FYN" id="UqE-ul-XbO"/>
                                             <outlet property="titleLabel" destination="0XF-DK-HgQ" id="39A-xL-hrv"/>
                                         </connections>

@@ -9,20 +9,20 @@ import UIKit
 import Parse
 
 class BookPostCell: UITableViewCell {
-    @IBOutlet weak var objectId: UILabel!
+    
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var favorite: UIButton!
+    
+    @IBOutlet weak var checkout: UIButton!
     
     weak var delegate: BookPostCellDelegate?
 
     override func prepareForReuse() {
         super.prepareForReuse()
         self.delegate = nil
-
-
-    
+    }
     
     @IBAction func someButtonTapped(_ sender: UIButton) {
         self.delegate?.buttonTapped(cell: self)
