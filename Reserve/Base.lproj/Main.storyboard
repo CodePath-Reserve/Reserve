@@ -8,6 +8,141 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="k7e-3Y-Fyi">
+            <objects>
+                <tabBarController id="9sT-se-NbE" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kn4-Ni-Plf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="L5H-oX-Wid" kind="relationship" relationship="viewControllers" id="g5d-VI-hao"/>
+                        <segue destination="91H-WJ-339" kind="relationship" relationship="viewControllers" id="lK9-Hi-0Z1"/>
+                        <segue destination="oZs-Pc-PF2" kind="relationship" relationship="viewControllers" id="HqI-Cd-yvO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ghF-v3-F4I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2195" y="639"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="baH-Fn-0tn">
+            <objects>
+                <tableViewController id="HVZ-iA-ByJ" customClass="FavoriteViewController" customModule="Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="BZO-9U-FGj">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteBookCell" rowHeight="213" id="gER-gI-DYq" customClass="FavoriteBookCell" customModule="Reserve" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="213"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gER-gI-DYq" id="JAe-qz-o3S">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="213"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fave Book #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVU-G9-6is">
+                                            <rect key="frame" x="146" y="96" width="101" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="testLabel" destination="BVU-G9-6is" id="wHc-lt-Rps"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HVZ-iA-ByJ" id="F5M-7r-Qnr"/>
+                            <outlet property="delegate" destination="HVZ-iA-ByJ" id="pYw-c8-wcs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites" id="PIZ-5j-P5u"/>
+                    <connections>
+                        <outlet property="tableView" destination="BZO-9U-FGj" id="AtS-NM-0Sq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pqE-JQ-GCX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2195.3846153846152" y="2238.6255924170614"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="v2k-F6-MHT">
+            <objects>
+                <navigationController id="L5H-oX-Wid" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="star" catalog="system" id="4ZT-oJ-Tk6"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UaY-E3-TEs">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HVZ-iA-ByJ" kind="relationship" relationship="rootViewController" id="ZJr-tY-DxH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Kn-zE-mz0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2195" y="1412"/>
+        </scene>
+        <!--My Books-->
+        <scene sceneID="RlZ-SL-O75">
+            <objects>
+                <tableViewController id="yFE-tX-VQK" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jaE-g4-l2W">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="229" id="Cea-5K-77t">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="229"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cea-5K-77t" id="dgF-oX-GjE">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="229"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History Book #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pj-Im-PKf">
+                                            <rect key="frame" x="158" y="104" width="120" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yFE-tX-VQK" id="WpK-s7-Zj7"/>
+                            <outlet property="delegate" destination="yFE-tX-VQK" id="zgr-W9-Pn5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Books" id="TdE-Ap-BoS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kWS-O5-gyz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1309.2307692307693" y="2238.6255924170614"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="EgP-rZ-m3b">
+            <objects>
+                <navigationController id="91H-WJ-339" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="books.vertical" catalog="system" id="jgX-uK-xZj"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i5U-dj-Ifa">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yFE-tX-VQK" kind="relationship" relationship="rootViewController" id="flm-dt-vQx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I74-Sh-8Kc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1309" y="1412"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -82,7 +217,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="QvY-Zd-Wdg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-10.769230769230768" y="66.824644549763036"/>
+            <point key="canvasLocation" x="-2963" y="-146"/>
         </scene>
         <!--Catalog View Controller-->
         <scene sceneID="LQT-u2-LmB">
@@ -185,17 +320,39 @@
                             <constraint firstAttribute="bottom" secondItem="o4a-bB-vH0" secondAttribute="bottom" id="w6N-Tx-wGO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="tcs-9G-vL2"/>
                     <connections>
                         <outlet property="tableView" destination="o4a-bB-vH0" id="zR7-pL-t5t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09i-WY-Lls" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923.07692307692309" y="66.824644549763036"/>
+            <point key="canvasLocation" x="-4335" y="2239"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Xtd-5c-7jJ">
+            <objects>
+                <navigationController id="oZs-Pc-PF2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="5Jz-Cr-HjI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="m8G-Wq-mT7">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xc8-Gx-73p" kind="relationship" relationship="rootViewController" id="OWZ-fV-F4b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ugk-6X-rCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3380" y="1452"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vCP-Yc-eXb"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="BookIcon" width="640" height="640"/>
+        <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
