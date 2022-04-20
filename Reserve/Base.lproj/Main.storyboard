@@ -11,16 +11,16 @@
         <!--Tab Bar Controller-->
         <scene sceneID="k7e-3Y-Fyi">
             <objects>
-                <tabBarController id="9sT-se-NbE" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="9sT-se-NbE" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kn4-Ni-Plf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="oZs-Pc-PF2" kind="relationship" relationship="viewControllers" id="HqI-Cd-yvO"/>
                         <segue destination="L5H-oX-Wid" kind="relationship" relationship="viewControllers" id="g5d-VI-hao"/>
                         <segue destination="91H-WJ-339" kind="relationship" relationship="viewControllers" id="lK9-Hi-0Z1"/>
-                        <segue destination="oZs-Pc-PF2" kind="relationship" relationship="viewControllers" id="HqI-Cd-yvO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghF-v3-F4I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -211,13 +211,13 @@
                     <connections>
                         <outlet property="passwordField" destination="m67-sT-2cu" id="x0u-vr-0LO"/>
                         <outlet property="usernameField" destination="AHv-eN-Ena" id="J5Z-N1-5XR"/>
-                        <segue destination="xc8-Gx-73p" kind="presentation" identifier="loginSegue" id="vCP-Yc-eXb"/>
+                        <segue destination="9sT-se-NbE" kind="presentation" identifier="loginSegue" id="wzF-J2-h6x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="QvY-Zd-Wdg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2963" y="-146"/>
+            <point key="canvasLocation" x="-2195" y="-161"/>
         </scene>
         <!--Catalog View Controller-->
         <scene sceneID="LQT-u2-LmB">
@@ -327,13 +327,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09i-WY-Lls" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4335" y="2239"/>
+            <point key="canvasLocation" x="-3380" y="2239"/>
         </scene>
         <!--Item-->
         <scene sceneID="Xtd-5c-7jJ">
             <objects>
                 <navigationController id="oZs-Pc-PF2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5Jz-Cr-HjI"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" id="5Jz-Cr-HjI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m8G-Wq-mT7">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -347,13 +347,11 @@
             <point key="canvasLocation" x="-3380" y="1452"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="vCP-Yc-eXb"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="BookIcon" width="640" height="640"/>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="house" catalog="system" width="128" height="106"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
