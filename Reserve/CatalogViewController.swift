@@ -15,19 +15,32 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     var books = [PFObject]()
     
     @IBOutlet weak var tableView: UITableView!
+    let commentBar = MessageInputBar()
+    var showsCommentBar = false
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.keyboardDismissMode = .interactive
         // Do any additional setup after loading the view.
+    }
+    
+    override var inputAccessoryView: UIView? {
+        return commentBar
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return showsCommentBar
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         let query = PFQuery(className: "Book")
+        query.includeKeys(["author", "comments", "comments.author"])
 
         query.findObjectsInBackground { (books, error) in
             if books != nil {
@@ -41,23 +54,63 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let book = books[section]
+        let comments = (book["comments"] as? [PFObject]) ?? []
+        
+        return comments.count + 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
         
+        
+        let book = books[indexPath.section]
+        let comments = (book["comments"] as? [PFObject]) ?? []
+        
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
+            cell.titleLabel.text = book["title"] as! String
+            cell.authorLabel.text = book["author"] as! String
+            
+            let imageFile = book["cover"] as! PFFileObject
+            let urlString = imageFile.url!
+            let url = URL(string: urlString)!
+            cell.photoView.af.setImage(withURL: url)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
+            
+            let comment = comments[indexPath.row - 1]
+            cell.commentLabel.text = comment["text"] as? String
+            
+            let user = comment["author"] as! PFUser
+            cell.nameLabel.text = user.username
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = books[indexPath.row]
-
-        cell.titleLabel.text = book["title"] as! String
-        cell.authorLabel.text = book["author"] as! String
+        let comment = PFObject(className: "Comments")
+        comment["text"] = "This is a random comment"
+        comment["book"] = book
+        comment["author"] = PFUser.current()!
         
-        let imageFile = book["cover"] as! PFFileObject
-        let urlString = imageFile.url!
-        let url = URL(string: urlString)!
-        cell.photoView.af.setImage(withURL: url)
-
-        return cell
+        book.add(comment, forKey: "comments")
+        
+        book.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved")
+            } else {
+                print("Error saving comment")
+            }
+            
+        }
+        
     }
 
     /*

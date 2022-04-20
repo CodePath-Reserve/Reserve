@@ -11,7 +11,7 @@ class BookPostCell: UITableViewCell {
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
+
     @IBAction func onCheckoutButton(_ sender: Any) {
     }
     @IBAction func onFavoriteButton(_ sender: Any) {

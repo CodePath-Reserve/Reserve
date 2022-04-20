@@ -1,5 +1,5 @@
 //
-//  FavoriteBookCell.swift
+//  CommentCell.swift
 //  Reserve
 //
 //  Created by Edward Cluster on 4/19/22.
@@ -7,12 +7,10 @@
 
 import UIKit
 
-class FavoriteBookCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
+class CommentCell: UITableViewCell {
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     
     
     override func awakeFromNib() {

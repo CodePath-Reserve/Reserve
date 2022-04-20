@@ -17,7 +17,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-//        self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +33,9 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteBookCell") as! FavoriteBookCell
         
-        cell.testLabel.text = "Favorite Book"
+        cell.titleLabel.text = "Book title 1"
+        cell.authorLabel.text = "Author 1"
+
 
         return cell
     }
