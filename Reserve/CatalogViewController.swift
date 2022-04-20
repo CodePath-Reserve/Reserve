@@ -16,13 +16,25 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             return
         }
-        print(books[indexPath.row])
-        PFUser.current()!.add(books[indexPath.row], forKey: "checkedOut")
+        print(books[indexPath.section])
+        PFUser.current()!.add(books[indexPath.section], forKey: "checkedOut")
         PFUser.current()!.saveInBackground { (success, error) in
             if success {
-                print("Comment saved")
+                print("Book is checked out")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Checkout success", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
             } else {
-                print("Error saving comment")
+                print("Error checking out book")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Checkout failure", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
             }
         }
         
