@@ -6,17 +6,25 @@
 //
 
 import UIKit
+import Parse
 
 class BookPostCell: UITableViewCell {
+    @IBOutlet weak var objectId: UILabel!
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
-    @IBAction func onCheckoutButton(_ sender: Any) {
+    @IBOutlet weak var favorite: UIButton!
+    
+    weak var delegate: BookPostCellDelegate?
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.delegate = nil
     }
-    @IBAction func onFavoriteButton(_ sender: Any) {
-    }
-    @IBAction func onCommentButton(_ sender: Any) {
+    
+    @IBAction func someButtonTapped(_ sender: UIButton) {
+        self.delegate?.buttonTapped(cell: self)
     }
     
     override func awakeFromNib() {
@@ -30,4 +38,9 @@ class BookPostCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+
+protocol BookPostCellDelegate: class {
+    func buttonTapped(cell: BookPostCell)
 }

@@ -10,7 +10,31 @@ import Parse
 import AlamofireImage
 import MessageInputBar
 
-class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BookPostCellDelegate {
+    func buttonTapped(cell: BookPostCell) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
+            return
+        }
+        print(books[indexPath.row])
+        PFUser.current()!.add(books[indexPath.row], forKey: "checkedOut")
+        PFUser.current()!.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved")
+            } else {
+                print("Error saving comment")
+            }
+        }
+        
+//        PFUser.current()!.removeObjects(in: [books[indexPath.row]], forKey: "checkedOut")
+//        PFUser.current()!.saveInBackground { (success, error) in
+//            if success {
+//                print("Comment saved")
+//            } else {
+//                print("Error saving comment")
+//            }
+//        }
+    }
+    
     
     var books = [PFObject]()
     
@@ -45,12 +69,16 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
         
         let book = books[indexPath.row]
-
+        
         cell.titleLabel.text = book["title"] as! String
         cell.authorLabel.text = book["author"] as! String
+        
+        cell.delegate = self
         
         let imageFile = book["cover"] as! PFFileObject
         let urlString = imageFile.url!
@@ -59,6 +87,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         return cell
     }
+    
 
     /*
     // MARK: - Navigation

@@ -138,7 +138,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="cart" catalog="system" title=""/>
                                                     <connections>
-                                                        <action selector="onCheckoutButton:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="Sbf-Yg-CdO"/>
+                                                        <action selector="someButtonTapped:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="CDH-7h-eBN"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vD-Q7-lu9">
@@ -146,19 +146,20 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title=""/>
-                                                    <connections>
-                                                        <action selector="onFavoriteButton:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="wQ0-zJ-FgP"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYa-v8-rxW">
                                                     <rect key="frame" x="303" y="301" width="48" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="text.bubble" catalog="system" title=""/>
-                                                    <connections>
-                                                        <action selector="onCommentButton:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="mqI-k1-b7g"/>
-                                                    </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="objectId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhK-Ag-uwH">
+                                                    <rect key="frame" x="204" y="0.0" width="9" height="3"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="2"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="6bs-ND-FYN" secondAttribute="bottom" constant="101" id="Lj5-sy-7W1"/>
@@ -168,7 +169,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorLabel" destination="Ibp-Y8-XUK" id="pI8-VF-QrN"/>
+                                            <outlet property="favorite" destination="Bsb-Ex-36Z" id="lPv-88-UzO"/>
                                             <outlet property="genreLabel" destination="G4E-Ar-RGH" id="ZK4-HV-1aQ"/>
+                                            <outlet property="objectId" destination="OhK-Ag-uwH" id="HzB-Df-k39"/>
                                             <outlet property="photoView" destination="6bs-ND-FYN" id="UqE-ul-XbO"/>
                                             <outlet property="titleLabel" destination="0XF-DK-HgQ" id="39A-xL-hrv"/>
                                         </connections>
