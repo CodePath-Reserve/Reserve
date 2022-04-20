@@ -10,7 +10,33 @@ import Parse
 import AlamofireImage
 import MessageInputBar
 
-class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageInputBarDelegate {
+
+class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BookPostCellDelegate, MessageInputBarDelegate {
+    func buttonTapped(cell: BookPostCell) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
+            return
+        }
+        print(books[indexPath.row])
+        PFUser.current()!.add(books[indexPath.row], forKey: "checkedOut")
+        PFUser.current()!.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved")
+            } else {
+                print("Error saving comment")
+            }
+        }
+        
+//        PFUser.current()!.removeObjects(in: [books[indexPath.row]], forKey: "checkedOut")
+//        PFUser.current()!.saveInBackground { (success, error) in
+//            if success {
+//                print("Comment saved")
+//            } else {
+//                print("Error saving comment")
+//            }
+//        }
+    }
+    
+
     
     var books = [PFObject]()
     
@@ -108,13 +134,13 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
+
         let book = books[indexPath.section]
         let comments = (book["comments"] as? [PFObject]) ?? []
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookPostCell") as! BookPostCell
+            cell.delegate = self
             cell.titleLabel.text = book["title"] as! String
             cell.authorLabel.text = book["author"] as! String
             
@@ -125,7 +151,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         } else if indexPath.row <= comments.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
-            
+            cell.delegate = self
             let comment = comments[indexPath.row - 1]
             cell.commentLabel.text = comment["text"] as? String
             
@@ -135,7 +161,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddCommentCell")!
-            
+            cell.delegate = self
             return cell
         }
     }
@@ -169,6 +195,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        }
         
     }
+    
 
     /*
     // MARK: - Navigation

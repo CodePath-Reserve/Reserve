@@ -329,7 +329,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="cart" catalog="system" title=""/>
                                                     <connections>
-                                                        <action selector="onCheckoutButton:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="Sbf-Yg-CdO"/>
+                                                        <action selector="someButtonTapped:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="CDH-7h-eBN"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vD-Q7-lu9">
@@ -337,9 +337,6 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title=""/>
-                                                    <connections>
-                                                        <action selector="onFavoriteButton:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="wQ0-zJ-FgP"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
