@@ -351,6 +351,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title=""/>
+                                                    <connections>
+                                                        <action selector="favoriteButtonTapped:" destination="98n-MQ-0UQ" eventType="touchUpInside" id="NOG-Pl-AoS"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

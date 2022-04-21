@@ -28,6 +28,11 @@ class BookPostCell: UITableViewCell {
         self.delegate?.buttonTapped(cell: self)
     }
     
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        self.delegate?.favoriteTapped(cell: self)
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -44,4 +49,5 @@ class BookPostCell: UITableViewCell {
 
 protocol BookPostCellDelegate: class {
     func buttonTapped(cell: BookPostCell)
+    func favoriteTapped(cell: BookPostCell)
 }

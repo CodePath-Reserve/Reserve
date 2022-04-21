@@ -61,6 +61,33 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func favoriteTapped(cell: BookPostCell) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
+            return
+        }
+        let book = books[indexPath.section]
+        
+        PFUser.current()!.add(book, forKey: "favorited")
+        PFUser.current()!.saveInBackground { (success, error) in
+            if success {
+                print("Book is favorited")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Favorite success", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
+            } else {
+                print("Error checking out book")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Favorite failure", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
+            }
+        }
+    }
 
     
     var books = [PFObject]()
