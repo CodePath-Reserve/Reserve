@@ -67,6 +67,19 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         let book = books[indexPath.section]
         
+        let favorites = PFUser.current()!["favorited"]
+        
+        
+//        let alreadyFavorited = false
+        
+//        for f in favorites {
+//            print("here")
+//        }
+//
+//        print("*******")
+//        print(favorites)
+//        print(book.objectId)
+        
         PFUser.current()!.add(book, forKey: "favorited")
         PFUser.current()!.saveInBackground { (success, error) in
             if success {

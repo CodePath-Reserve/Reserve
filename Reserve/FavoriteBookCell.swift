@@ -14,10 +14,13 @@ class FavoriteBookCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     
+    @IBOutlet weak var unfavoriteBook: UIButton!
+    
+    weak var delegate: FavoriteBookCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.delegate = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,5 +28,12 @@ class FavoriteBookCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    @IBAction func unfavoriteTapped(_ sender: Any) {
+        self.delegate?.unfavoriteTapped(cell: self)
+    }
+    
+}
 
+protocol FavoriteBookCellDelegate: class {
+    func unfavoriteTapped(cell: FavoriteBookCell)
 }

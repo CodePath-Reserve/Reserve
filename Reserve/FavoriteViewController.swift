@@ -8,7 +8,27 @@
 import UIKit
 import Parse
 
-class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FavoriteBookCellDelegate {
+    
+    func unfavoriteTapped(cell: FavoriteBookCell) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
+                    return
+                }
+        var book = books[indexPath.row]
+
+        PFUser.current()!.removeObjects(in: [book], forKey: "favorited")
+        PFUser.current()!.saveInBackground { (success, error) in
+            if success {
+                print("Unfavorited")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Unfavorited", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
+            }
+        }
+    }
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -38,6 +58,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteBookCell") as! FavoriteBookCell
         
         let book = books[indexPath.row]
+        cell.delegate = self
         
         let query = PFQuery(className: "Book")
         query.getObjectInBackground(withId: book.objectId!) { (obj, error) in

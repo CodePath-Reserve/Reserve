@@ -65,10 +65,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56G-an-WiV">
-                                            <rect key="frame" x="264" y="244" width="47" height="30"/>
+                                            <rect key="frame" x="264" y="244" width="47" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title=""/>
+                                            <buttonConfiguration key="configuration" style="plain" image="star.fill" catalog="system" title=""/>
+                                            <connections>
+                                                <action selector="unfavoriteTapped:" destination="gER-gI-DYq" eventType="touchUpInside" id="7Zh-18-H7h"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -83,6 +86,7 @@
                                     <outlet property="authorLabel" destination="Led-Vz-2wt" id="f6y-LI-VHX"/>
                                     <outlet property="photoView" destination="s4k-JR-qOk" id="wb4-cB-rsa"/>
                                     <outlet property="titleLabel" destination="W00-GN-hBo" id="TPb-LC-nxP"/>
+                                    <outlet property="unfavoriteBook" destination="56G-an-WiV" id="hIm-bk-vbX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -480,6 +484,7 @@
         <image name="cart.badge.minus" catalog="system" width="128" height="106"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
