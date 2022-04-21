@@ -8,7 +8,49 @@
 import UIKit
 import Parse
 
-class CheckedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CheckedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CheckedBookCellDelegate {
+    func buttonTapped(cell: CheckedBookCell) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
+            return
+        }
+        var book = books[indexPath.row]
+        let query = PFQuery(className: "Book")
+        query.getObjectInBackground(withId: book.objectId!) { (obj, error) in
+            if error == nil {
+                obj!["status"] = true
+                obj?.saveInBackground()
+                book = obj!
+            } else {
+                print("that was a fail!!")
+            }
+        }
+        
+        print(book)
+        
+        PFUser.current()!.removeObjects(in: [book], forKey: "checkedOut")
+        PFUser.current()!.saveInBackground { (success, error) in
+            if success {
+                print("Book returned")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Book returned", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
+            } else {
+                print("Error returning book")
+                let alertDisapperTimeInSeconds = 1.5
+                let alert = UIAlertController(title: nil, message: "Return failure", preferredStyle: .actionSheet)
+                self.present(alert, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                  alert.dismiss(animated: true)
+                }
+            }
+        }
+        
+}
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -35,7 +77,8 @@ class CheckedViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckedBookCell") as! CheckedBookCell
         let book = books[indexPath.row]
-        
+        cell.delegate = self
+
         let query = PFQuery(className: "Book")
         query.getObjectInBackground(withId: book.objectId!) { (obj, error) in
             if error == nil {
