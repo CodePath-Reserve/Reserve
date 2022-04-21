@@ -11,7 +11,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="k7e-3Y-Fyi">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="9sT-se-NbE" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ReserveController" modalPresentationStyle="fullScreen" id="9sT-se-NbE" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kn4-Ni-Plf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -91,7 +91,14 @@
                             <outlet property="delegate" destination="HVZ-iA-ByJ" id="pYw-c8-wcs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="PIZ-5j-P5u"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="PIZ-5j-P5u">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="stk-J5-y3C">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="HVZ-iA-ByJ" id="Aco-VZ-vkx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="BZO-9U-FGj" id="AtS-NM-0Sq"/>
                     </connections>
@@ -180,7 +187,14 @@
                             <outlet property="delegate" destination="yFE-tX-VQK" id="zgr-W9-Pn5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Books" id="TdE-Ap-BoS"/>
+                    <navigationItem key="navigationItem" title="My Books" id="TdE-Ap-BoS">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rvX-Hn-dVi">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="yFE-tX-VQK" id="Puo-X5-LmU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jaE-g4-l2W" id="TDX-Qf-i0a"/>
                     </connections>
@@ -206,10 +220,10 @@
             </objects>
             <point key="canvasLocation" x="-1023" y="1412"/>
         </scene>
-        <!--Login View Controller-->
+        <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Reserve" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Reserve" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -422,7 +436,14 @@
                             <constraint firstAttribute="bottom" secondItem="o4a-bB-vH0" secondAttribute="bottom" id="w6N-Tx-wGO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Catalog" id="O9Q-Ew-hLK"/>
+                    <navigationItem key="navigationItem" title="Catalog" id="O9Q-Ew-hLK">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Yke-54-kco">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="xc8-Gx-73p" id="icz-ia-NVU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="o4a-bB-vH0" id="zR7-pL-t5t"/>
                     </connections>
