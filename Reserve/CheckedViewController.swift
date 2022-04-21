@@ -12,9 +12,11 @@ class CheckedViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
+    var books = [PFObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -22,21 +24,32 @@ class CheckedViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        self.books = PFUser.current()!["checkedOut"]  as! [PFObject]
         self.tableView.reloadData()
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5;
+        return books.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckedBookCell") as! CheckedBookCell
+        let book = books[indexPath.row]
         
-        cell.titleLabel.text = "title #1"
-        cell.authorLabel.text = "author #1"
+        let query = PFQuery(className: "Book")
+        query.getObjectInBackground(withId: book.objectId!) { (obj, error) in
+            if error == nil {
+                cell.titleLabel.text = obj!["title"] as! String
+                cell.authorLabel.text = obj!["author"] as! String
 
+                let imageFile = obj!["cover"] as! PFFileObject
+                let urlString = imageFile.url!
+                let url = URL(string: urlString)!
+                cell.photoView.af.setImage(withURL: url)
+            } else {
+                print("that was a fail!!")
+            }
+        }
         return cell
     }
     
