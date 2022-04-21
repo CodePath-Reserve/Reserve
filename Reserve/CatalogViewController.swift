@@ -178,7 +178,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
             let comment = comments[indexPath.row - 1]
             cell.commentLabel.text = comment["text"] as? String
-            
+           
             let user = comment["author"] as! PFUser
             cell.nameLabel.text = user.username
             
