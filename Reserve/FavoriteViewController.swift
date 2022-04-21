@@ -21,13 +21,14 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
             if success {
                 print("Unfavorited")
                 let alertDisapperTimeInSeconds = 1.5
-                let alert = UIAlertController(title: nil, message: "Unfavorited", preferredStyle: .actionSheet)
+                let alert = UIAlertController(title: nil, message: "Unfavorited book", preferredStyle: .actionSheet)
                 self.present(alert, animated: true)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
                   alert.dismiss(animated: true)
                 }
             }
         }
+        viewDidAppear(true)
     }
     
     
