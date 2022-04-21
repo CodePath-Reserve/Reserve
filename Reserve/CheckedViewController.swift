@@ -47,7 +47,7 @@ class CheckedViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
-        
+       viewDidAppear(true)
 }
     
     
