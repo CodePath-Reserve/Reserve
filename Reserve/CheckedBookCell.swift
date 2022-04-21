@@ -12,8 +12,19 @@ class CheckedBookCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet weak var returnBook: UIButton!
     
-
+    weak var delegate: CheckedBookCellDelegate?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.delegate = nil
+    }
+    
+    @IBAction func someButtonTapped(_ sender: UIButton) {
+        self.delegate?.buttonTapped(cell: self)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,4 +36,8 @@ class CheckedBookCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+protocol CheckedBookCellDelegate: class {
+    func buttonTapped(cell: CheckedBookCell)
 }

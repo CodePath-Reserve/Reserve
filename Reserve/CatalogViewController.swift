@@ -5,6 +5,15 @@
 //  Created by Edward Cluster on 4/12/22.
 //
 
+//        PFUser.current()!.removeObjects(in: [books[indexPath.row]], forKey: "checkedOut")
+//        PFUser.current()!.saveInBackground { (success, error) in
+//            if success {
+//                print("Comment saved")
+//            } else {
+//                print("Error saving comment")
+//            }
+//        }
+
 import UIKit
 import Parse
 import AlamofireImage
@@ -23,28 +32,40 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             return
         }
-        print(books[indexPath.section])
-        PFUser.current()!.add(books[indexPath.section], forKey: "checkedOut")
-        PFUser.current()!.saveInBackground { (success, error) in
-            if success {
-                print("Book is checked out")
-                let alertDisapperTimeInSeconds = 1.5
-                let alert = UIAlertController(title: nil, message: "Checkout success", preferredStyle: .actionSheet)
-                self.present(alert, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
-                  alert.dismiss(animated: true)
-                }
-            } else {
-                print("Error checking out book")
-                let alertDisapperTimeInSeconds = 1.5
-                let alert = UIAlertController(title: nil, message: "Checkout failure", preferredStyle: .actionSheet)
-                self.present(alert, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
-                  alert.dismiss(animated: true)
+        let book = books[indexPath.section]
+        
+        if (book["status"] as! Bool == true) {
+            book["status"] = false
+            
+            PFUser.current()!.add(book, forKey: "checkedOut")
+            PFUser.current()!.saveInBackground { (success, error) in
+                if success {
+                    print("Book is checked out")
+                    let alertDisapperTimeInSeconds = 1.5
+                    let alert = UIAlertController(title: nil, message: "Checkout success", preferredStyle: .actionSheet)
+                    self.present(alert, animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                      alert.dismiss(animated: true)
+                    }
+                } else {
+                    print("Error checking out book")
+                    let alertDisapperTimeInSeconds = 1.5
+                    let alert = UIAlertController(title: nil, message: "Checkout failure", preferredStyle: .actionSheet)
+                    self.present(alert, animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+                      alert.dismiss(animated: true)
+                    }
                 }
             }
+        } else {
+            print("Book is already checked out")
+            let alertDisapperTimeInSeconds = 1.5
+            let alert = UIAlertController(title: nil, message: "Book is already checked out", preferredStyle: .actionSheet)
+            self.present(alert, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + alertDisapperTimeInSeconds) {
+              alert.dismiss(animated: true)
+            }
         }
-        
 
     }
     
@@ -194,7 +215,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
             let comment = comments[indexPath.row - 1]
             cell.commentLabel.text = comment["text"] as? String
-            
+           
             let user = comment["author"] as! PFUser
             cell.nameLabel.text = user.username
             
@@ -235,7 +256,15 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-
+    @IBAction func onLogoutButton(_ sender: Any) {
+        PFUser.logOut()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else { return }
+        
+        delegate.window?.rootViewController = loginViewController
+    }
+    
     /*
     // MARK: - Navigation
 
