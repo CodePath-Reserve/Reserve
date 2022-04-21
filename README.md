@@ -22,6 +22,9 @@ This iOS application is like a book reservation dashboard. Users will be able to
 
 ## Sprint Walkthroughs
 
+### Sprint 03 - Demo
+<img width="250" alt="sketch" src="https://github.com/CodePath-Reserve/Reserve/blob/main/sprint03.gif?raw=true">
+
 ### Sprint 02 - Demo
 <img width="250" alt="sketch" src="https://github.com/CodePath-Reserve/Reserve/blob/main/sprint2.gif?raw=true">
 
@@ -36,11 +39,12 @@ This iOS application is like a book reservation dashboard. Users will be able to
 **Required Must-have Stories**
 
 - [X] User can reserve/checkout a book
-- [ ] User can return a book
-- [ ] User can see a history of all the books they have checked out
+- [X] User can return a book
+- [X] User can see a history of all the books they have checked out
 - [X] User can view a catalog of books
 - [X] Set up parse database
 - [X] User can login and signup
+- [X] User can log out
 - [ ] User can favorite books and view a list of their favorited books
 - [X] User can write reviews on books
 

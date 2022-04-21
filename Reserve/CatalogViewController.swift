@@ -19,8 +19,15 @@ import Parse
 import AlamofireImage
 import MessageInputBar
 
+// Edward's changes
+class SearchResult: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
 
-class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BookPostCellDelegate, MessageInputBarDelegate {
+// Edwars's Changes
+class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BookPostCellDelegate, MessageInputBarDelegate, UISearchResultsUpdating {
     func buttonTapped(cell: BookPostCell) {
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             return
@@ -59,6 +66,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
               alert.dismiss(animated: true)
             }
         }
+
     }
     
     func favoriteTapped(cell: BookPostCell) {
@@ -111,9 +119,17 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var selectedBook: PFObject!
     
+    // Edward's Changes
+    let searchController = UISearchController(searchResultsController: SearchResult())
+    var filteredData: [String]!
+    @IBOutlet weak var searchTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Edward's changes
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
         
         commentBar.inputTextView.placeholder = "Add a comment..."
         commentBar.sendButton.title = "Book"
@@ -127,6 +143,27 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(keyboardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    // Edward's changes
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
+        let vc = searchController.searchResultsController as? SearchResult
+        vc?.view.backgroundColor = .systemCyan
+
+        print("\nSearching for: "+text)
+        print("\tBooks below:\n")
+
+        for bookObj in books {
+            let strTitle = bookObj["title"] as! String
+            if strTitle.replacingOccurrences(of: " ", with: "").lowercased().contains(text.replacingOccurrences(of: " ", with: "").lowercased()){
+                print("\t"+strTitle)
+            }
+        }
+        
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
@@ -218,7 +255,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
             let comment = comments[indexPath.row - 1]
             cell.commentLabel.text = comment["text"] as? String
-            
+           
             let user = comment["author"] as! PFUser
             cell.nameLabel.text = user.username
             

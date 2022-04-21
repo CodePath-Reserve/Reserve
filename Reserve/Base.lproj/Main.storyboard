@@ -171,6 +171,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="cart.badge.minus" catalog="system" title=""/>
+                                            <connections>
+                                                <action selector="someButtonTapped:" destination="Cea-5K-77t" eventType="touchUpInside" id="dBj-Hk-MS3"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -182,6 +185,7 @@
                                 <connections>
                                     <outlet property="authorLabel" destination="hmf-O6-RVF" id="5po-Dn-RnO"/>
                                     <outlet property="photoView" destination="jan-j8-oZX" id="u0n-gy-6ZH"/>
+                                    <outlet property="returnBook" destination="UOI-bP-Nwe" id="INj-ZT-ejq"/>
                                     <outlet property="titleLabel" destination="adY-s6-hyL" id="FhZ-SC-WPf"/>
                                 </connections>
                             </tableViewCell>
