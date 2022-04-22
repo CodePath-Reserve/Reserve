@@ -19,12 +19,6 @@ import Parse
 import AlamofireImage
 import MessageInputBar
 
-// Edward's changes
-class SearchResult: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
 
 // Edwars's Changes
 class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BookPostCellDelegate, MessageInputBarDelegate, UISearchResultsUpdating {
@@ -32,7 +26,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             return
         }
-        let book = books[indexPath.section]
+        let book = filteredData[indexPath.section]
         
         if (book["status"] as! Bool == true) {
             book["status"] = false
@@ -122,8 +116,8 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     var selectedBook: PFObject!
     
     // Edward's Changes
-    let searchController = UISearchController(searchResultsController: SearchResult())
-    var filteredData: [String]!
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredData = [PFObject]()
     @IBOutlet weak var searchTableView: UITableView!
 
     override func viewDidLoad() {
@@ -132,6 +126,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Edward's changes
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
+        definesPresentationContext = true
         
         commentBar.inputTextView.placeholder = "Add a comment..."
         commentBar.sendButton.title = "Book"
@@ -139,6 +134,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.delegate = self
         tableView.dataSource = self
+        filteredData = books
         
         tableView.keyboardDismissMode = .interactive
         
@@ -153,19 +149,23 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             return
         }
         
-        let vc = searchController.searchResultsController as? SearchResult
-        vc?.view.backgroundColor = .systemCyan
-
         print("\nSearching for: "+text)
         print("\tBooks below:\n")
-
-        for bookObj in books {
-            let strTitle = bookObj["title"] as! String
-            if strTitle.replacingOccurrences(of: " ", with: "").lowercased().contains(text.replacingOccurrences(of: " ", with: "").lowercased()){
-                print("\t"+strTitle)
+        
+        if text.isEmpty {
+            filteredData = books
+        } else {
+            filteredData.removeAll()
+            for bookObj in books {
+                let strTitle = bookObj["title"] as! String
+                if strTitle.replacingOccurrences(of: " ", with: "").lowercased().contains(text.replacingOccurrences(of: " ", with: "").lowercased()){
+                    filteredData.append(bookObj)
+                }
+                
             }
         }
         
+        tableView.reloadData()
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
@@ -218,6 +218,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         query.findObjectsInBackground { (books, error) in
             if books != nil {
                 self.books = books!
+                self.filteredData = self.books
                 self.tableView.reloadData()
             } else {
                 print("There are no books")
@@ -227,19 +228,19 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let book = books[section]
+        let book = filteredData[section]
         let comments = (book["comments"] as? [PFObject]) ?? []
         
         return comments.count + 2
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return books.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let book = books[indexPath.section]
+        let book = filteredData[indexPath.section]
         let comments = (book["comments"] as? [PFObject]) ?? []
         
         if indexPath.row == 0 {
@@ -269,7 +270,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let book = books[indexPath.section]
+        let book = filteredData[indexPath.section]
         let comment = PFObject(className: "Comments")
         let comments = (book["comments"] as? [PFObject]) ?? []
         
