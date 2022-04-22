@@ -22,6 +22,9 @@ This iOS application is like a book reservation dashboard. Users will be able to
 
 ## Sprint Walkthroughs
 
+### Sprint 04 - Demo
+<img width="250" alt="sketch" src="https://github.com/CodePath-Reserve/Reserve/blob/main/sprint04.gif?raw=true">
+
 ### Sprint 03 - Demo
 <img width="250" alt="sketch" src="https://github.com/CodePath-Reserve/Reserve/blob/main/sprint03.gif?raw=true">
 
@@ -45,12 +48,12 @@ This iOS application is like a book reservation dashboard. Users will be able to
 - [X] Set up parse database
 - [X] User can login and signup
 - [X] User can log out
-- [ ] User can favorite books and view a list of their favorited books
+- [X] User can favorite books and view a list of their favorited books
 - [X] User can write reviews on books
 
 **Optional Nice-to-have Stories**
 
-- [ ] User can search for books
+- [X] User can search for books
 
 ### 2. Screen Archetypes
 
