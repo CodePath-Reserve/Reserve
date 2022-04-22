@@ -68,7 +68,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
             return
         }
         
-        let book = books[indexPath.section]
+        let book = filteredData[indexPath.section]
         let favorites = PFUser.current()!["favorited"] as! [PFObject]
         
         for f in favorites {
