@@ -176,6 +176,7 @@ class CatalogViewController: UIViewController, UITableViewDelegate, UITableViewD
         query.findObjectsInBackground { (books, error) in
             if books != nil {
                 self.books = books!
+                self.filteredData = self.books
                 self.tableView.reloadData()
             } else {
                 print("There are no books")
